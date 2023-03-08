@@ -1,0 +1,9 @@
+- name: Run end to end tests for khaddock-sailor
+  hosts: khaddock_sailor_e2e
+  roles:
+    - role: common/setup
+      tags: ["common_setup", "never"]
+    - role: goss/setup
+      tags: ["goss_setup", "never"]
+    - role: goss/run_tests
+      tags: ["goss_tests"]

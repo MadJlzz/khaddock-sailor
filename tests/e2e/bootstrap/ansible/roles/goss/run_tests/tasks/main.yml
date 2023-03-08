@@ -1,0 +1,28 @@
+- name: Create temporary tests directory
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: goss_tests
+  register: goss_tests_dir
+
+- name: Copy goss tests to the target machine
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../../goss/{{ item }}"
+    dest: "{{ goss_tests_dir.path }}/{{ item }}"
+  loop: 
+    - sysctl.yml
+
+- name: Print location of the tests
+  ansible.builtin.debug:
+    msg: "Tests where copied in dir: {{ goss_tests_dir.path }}"
+
+- name: Run goss
+  ignore_errors: true
+  ansible.builtin.shell:
+    cmd: "goss --gossfile {{ goss_tests_dir.path }}/{{ item }} validate"
+  loop: 
+    - sysctl.yml
+
+- name: Cleanup temporary folder
+  ansible.builtin.file:
+    path: "{{ goss_tests_dir.path }}"
+    state: absent

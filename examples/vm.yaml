@@ -1,0 +1,26 @@
+---
+apiVersion: v1alpha1
+kind: SailorConfiguration
+metadata:
+  name: toto
+  namespace: tata
+labels:
+  target: linux
+  environment: production
+specs:
+  # Abstraction to add package repositories to the system
+  packageRepositories:
+    - name: Visual Studio Code
+      url: https://packages.microsoft.com/yumrepos/vscode
+      gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+      enabled: false # by default it is enable
+  # Abstraction to install packages on the system
+  packages:
+    - name: curl
+    - name: htop
+      version: 1.0 # we specify a specific version here
+    - name: code
+  sysctl:
+    # Simply setting KEY=VALUE here.
+    fs.inotify.max_user_instances: 129
+  

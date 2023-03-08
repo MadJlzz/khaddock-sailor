@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook": "file:///home/madjlzz/Projects/khaddock-sailor/tests/e2e/bootstrap/ansible/prepare_e2e_instance.yml"
+    }
+}

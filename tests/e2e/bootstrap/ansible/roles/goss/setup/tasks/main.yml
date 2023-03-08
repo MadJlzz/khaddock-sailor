@@ -1,0 +1,4 @@
+- name: Install Goss
+  become: true
+  ansible.builtin.shell:
+    cmd: curl -fsSL https://goss.rocks/install | sh
