@@ -8,7 +8,7 @@
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/../../goss/{{ item }}"
     dest: "{{ goss_tests_dir.path }}/{{ item }}"
-  loop: 
+  loop:
     - kernel_parameters.yml
 
 - name: Print location of the tests
@@ -19,7 +19,7 @@
   ignore_errors: true
   ansible.builtin.shell:
     cmd: "goss --gossfile {{ goss_tests_dir.path }}/{{ item }} validate"
-  loop: 
+  loop:
     - kernel_parameters.yml
 
 - name: Cleanup temporary folder

@@ -2,6 +2,7 @@ import subprocess
 
 from khaddock_sailor.commands import Command, WithPriviledge
 
+
 class KernelParameter(Command):
 
     def __init__(self, kernel_parameters: dict[str, str | int]) -> None:

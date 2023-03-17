@@ -2,6 +2,7 @@ from khaddoc_engine.specs_parser import get_specs_from_file
 
 from khaddock_sailor.kernel import KernelParameter
 
+
 def run():
     example_spec = get_specs_from_file('examples/vm.yaml')
     print(example_spec.specs.sysctl)
@@ -10,5 +11,5 @@ def run():
     kcmd.run()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     run()

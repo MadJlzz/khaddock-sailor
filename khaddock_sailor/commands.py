@@ -1,6 +1,7 @@
 import abc
 import subprocess
 
+
 class Command(abc.ABC):
 
     def __init__(self, priviledged: bool) -> None:
@@ -10,6 +11,7 @@ class Command(abc.ABC):
     @abc.abstractmethod
     def run(self) -> None:
         ...
+
 
 class WithPriviledge:
 

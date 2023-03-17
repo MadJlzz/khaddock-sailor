@@ -47,7 +47,7 @@ resource "google_compute_instance" "e2e_compute" {
     network = google_compute_network.e2e_vpc_network.name
     subnetwork = google_compute_subnetwork.e2e_vpc_subnet.name
     access_config {
-      
+
     }
   }
 

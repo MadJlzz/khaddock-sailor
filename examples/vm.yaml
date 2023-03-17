@@ -23,4 +23,3 @@ specs:
   sysctl:
     # Simply setting KEY=VALUE here.
     fs.inotify.max_user_instances: 129
-  
