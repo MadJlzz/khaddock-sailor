@@ -9,7 +9,7 @@
     src: "{{ playbook_dir }}/../../goss/{{ item }}"
     dest: "{{ goss_tests_dir.path }}/{{ item }}"
   loop: 
-    - sysctl.yml
+    - kernel_parameters.yml
 
 - name: Print location of the tests
   ansible.builtin.debug:
@@ -20,7 +20,7 @@
   ansible.builtin.shell:
     cmd: "goss --gossfile {{ goss_tests_dir.path }}/{{ item }} validate"
   loop: 
-    - sysctl.yml
+    - kernel_parameters.yml
 
 - name: Cleanup temporary folder
   ansible.builtin.file:

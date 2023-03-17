@@ -62,7 +62,7 @@ resource "local_file" "ansible_inventory" {
   filename = "../ansible/inventories/khaddock-sailor.ini"
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 
 }

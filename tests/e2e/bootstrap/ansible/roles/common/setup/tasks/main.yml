@@ -1,6 +1,2 @@
-- name: Install core packages
-  become: true
-  ansible.builtin.package:
-    name:
-      - git
-    state: latest
+- import_tasks: packages.yml
+- import_tasks: python.yml

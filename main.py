@@ -1,16 +1,13 @@
-from khaddoc_engine.specs import KhaddockMetadata
 from khaddoc_engine.specs_parser import get_specs_from_file
 
-from khaddock_sailor.sysctl import SysCtlCommand
+from khaddock_sailor.kernel import KernelParameter
 
 def run():
-    a = get_specs_from_file('examples/vm.yaml')
-    # TODO: later
-    # b = get_commands_from_specs(a)
-    print(a.specs.sysctl)
+    example_spec = get_specs_from_file('examples/vm.yaml')
+    print(example_spec.specs.sysctl)
 
-    sysctl_cmd = SysCtlCommand(sysctl_specs=a.specs.sysctl)
-    sysctl_cmd.run()
+    kcmd = KernelParameter(kernel_parameters=example_spec.specs.sysctl)
+    kcmd.run()
 
 
 if __name__ == "__main__":

@@ -1,4 +1,0 @@
-# Verify kernel parameter 'fs.inotify.max_user_instances' is equal to 128.
-kernel-param:
-  fs.inotify.max_user_instances:
-    value: 128

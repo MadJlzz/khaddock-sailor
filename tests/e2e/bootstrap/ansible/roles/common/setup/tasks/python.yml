@@ -1,0 +1,57 @@
+- name: Install required packages to build Python
+  become: true
+  ansible.builtin.package:
+    name:
+      - build-essential
+      - zlib1g-dev
+      - libncurses5-dev
+      - libgdbm-dev
+      - libnss3-dev
+      - libssl-dev
+      - libreadline-dev
+      - libffi-dev
+      - libsqlite3-dev
+      - libbz2-dev
+      - pkg-config
+      - wget
+    state: latest
+
+- name: Download Python 3.11 sources
+  ansible.builtin.get_url:
+    url: https://www.python.org/ftp/python/3.11.2/Python-3.11.2.tgz
+    dest: /tmp/Python-3.11.2.tgz
+
+- name: Create destination folder for Python sources
+  ansible.builtin.file:
+    path: "{{ goss_tests_dir.path }}"
+    state: "/tmp/Python-3.11.2"
+
+- name: Unarchive Python 3.11 sources
+  ansible.builtin.unarchive:
+    src: /tmp/Python-3.11.2.tgz
+    dest: /tmp/Python-3.11.2
+    remote_src: yes
+
+- name: Configure sources before 'make'
+  ansible.builtin.shell:
+    cmd: ./configure --enable-optimizations
+    chdir: /tmp/Python-3.11.2
+
+- name: Compile Python 3.11
+  ansible.builtin.shell:
+    cmd: make -j $(nproc)
+    chdir: /tmp/Python-3.11.2
+
+- name: Create symlinks to new Python 3.11
+  become: true
+  ansible.builtin.command:
+    cmd: make altinstall
+
+- name: Install pip3.11
+  become: true
+  ansible.builtin.shell:
+    cmd: curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11
+
+- name: Install virtualenv
+  ansible.builtin.command:
+    cmd: pip3.11 install virtualenv
